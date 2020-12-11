@@ -1,0 +1,114 @@
+drop table AdminInputs;
+
+drop table userdetails;
+drop table logindetails;
+
+drop table fundtransfer;
+drop table payeedetails;
+
+
+
+
+Create Table AdminInputs(
+AdminPassword Varchar2(10),
+AdminUserId Varchar2(10) primary key,
+AdminName varchar2(10));
+
+
+Insert into AdminInputs values('Nitish@04','1','nitish');
+
+
+Create table UserDetails
+(
+AccountNo varchar2(15) primary key,
+ReferenceId varchar2(15),
+Firstname varchar2(100),
+Lastname varchar2(100),
+FathersName varchar(100),
+DOB varchar2(20),
+mobileNo varchar2(15),
+Email varchar2(100),
+AdharCard varchar2(20),
+accountBalance number,
+PresAddressLine1 varchar2(100),
+PresAddressLine2 varchar2(100),
+PresCity varchar2(15),
+PresState varchar2(15),
+PresZipcode varchar2(15),
+PermAddressLine1 varchar2(100),
+PermAddressLine2 varchar2(100),
+PermCity varchar2(15),
+PermState varchar2(15),
+PermZipcode varchar2(15),
+OccupationType varchar2(25),
+SourceOfIncome varchar2(25),
+GrossAnnualIncome varchar2(25),
+approvedByAdmin varchar2(25),
+adminRemark varchar2(25)
+);
+
+
+Insert into UserDetails values ('111','101','Shubham','Gupta','G','15-08-1947','9876543210','shubham@gmail.com','11111',3000,'Mumbai','Mumbai','Mumbai','Maharashtra','421204','Mumbai','Mumbai','Mumbai','Maharashtra','421204','Software Engineer','Full Time Job','8 Lac','yes','verified');
+Insert into UserDetails values ('222','202','Vishal','Dwane','D','15-08-1947','9876543210','vishal@gmail.com','22222',2000,'Dehradun','Dehradun','Dehradun','Uttrakhand','248007','Dehradun','Dehradun','Dehradun','Uttrakhand','248007','Software Engineer','Full Time Job','10 Lac','yes','verified');
+Insert into UserDetails values ('333','303','Dinesh','M','M','15-08-1947','9876543210','dinesh@gmail.com','33333',4000,'Patna','Patna','Patna','Bihar','805110','Patna','Patna','Patna','Bihar','805110','Software Engineer','Full Time Job','12 Lac','yes','verified');
+
+
+
+
+
+create table LoginDetails
+(
+userid varchar(20) primary key,
+accountNumber varchar(20),
+Transaction_Password varchar2(20),
+login_Password varchar2(20),
+numberOfInvalidAttempts number,
+lastLogin varchar(20),
+foreign key (accountNumber) references UserDetails(AccountNo));
+
+
+
+
+insert into LoginDetails values('10001','111','Akm@1','Aab@1',1,'shubham');
+insert into LoginDetails values('10002','222','Akm@2','Aac@1',1,'vishal');
+insert into LoginDetails values('10003','333','Akm@3','Aad@1',1,'dinesh');
+
+
+
+
+
+Create Table PayeeDetails		
+(		
+PayeeID Varchar2(10) primary key,		
+PayeeAccountNumber Varchar(10),		
+PayeeName Varchar2(10),		
+UserAccountNumber Varchar2(10));		
+
+
+Insert into PayeeDetails values(101,222,'vishal',111);
+Insert into PayeeDetails values(102,333,'dinesh',222);
+Insert into PayeeDetails values(103,111,'shubham',222);
+
+
+
+
+
+
+
+
+
+ create table FundTransfer
+(
+transac_id number primary key,
+from_accno varchar2(20),
+to_accno varchar2(20),
+amount number,
+transac_mode varchar2(10),
+transac_date date);
+
+insert into FundTransfer values(1001,'111','222',1000,'IMPS','22-Nov-2000');
+insert into FundTransfer values(1002,'111','333',1000,'NEFT','22-Nov-2020');
+insert into FundTransfer values(1003,'222','333',1000,'IMPS','22-Dec-2020');
+
+
+
